@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+.env
+.DS_Store
+
+# Pilot data is never committed. The experiment runs among real colleagues and
+# the personas' charters, journals, calibration answers and event logs describe
+# real work with real people in it. See data/README.md.
+data/*
+!data/README.md
+
+# Local trace output. The committed fixtures live under evals/fixtures.
+traces/
+
+# Live experiment output: keep the summary, not the per-run traces.
+experiments/results/*.jsonl
+!experiments/results/summary.jsonl
+experiments/results/*.json
