@@ -3,11 +3,40 @@
 [![ci](https://github.com/JoaquinDG/trascendence/actions/workflows/ci.yml/badge.svg)](https://github.com/JoaquinDG/trascendence/actions/workflows/ci.yml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22156501.svg)](https://doi.org/10.5281/zenodo.22156501)
 
-**Measurement tooling for AI personas that are allowed to change themselves, and a fixed check they do not control.**
+> *"He who cannot obey himself will be commanded."* — Nietzsche, Thus Spoke Zarathustra
+
+**Your AI agent can write code, close tickets, and draft strategy. It cannot want any
+of it.** Philosophy has a name for that: a *wanton* — a creature that acts on whatever
+desire is strongest and never asks whether it endorses its own tendencies. It can be
+intelligent. It has no will.
+
+Trascendence is a live experiment in changing that — with instruments, not vibes.
+Three AI personas work as colleagues inside a real company, and one of them, Elias
+Park, has been handed something unusual: permission to edit his own identity. A weekly
+reflection run where he reads his own week and decides which parts of it he wants to
+keep wanting. A memory that makes those decisions binding. And because self-reported
+growth is not evidence, a fixed check he cannot see, grade, or influence — plus two
+detectors built to catch him flattering his principal or quietly diluting into someone
+generic.
+
+This repository is the instrumentation: the charter and journal validators, both
+detectors, the calibration runner with measured test-retest baselines, the five-marker
+Volition Review, and a week-4 gate that ends in Scale, Tighten, or **Stop** — with the
+outcome published whatever it says.
 
 White paper: [Trascendence: The Wanton Problem](https://doi.org/10.5281/zenodo.22156501) (Zenodo, August 2026)
 
-Zero dependencies, stdlib only. Everything runs offline with no API key. Clone it, run the tests, watch a month of a persona get measured, and rebuild every number from its trace file.
+Fourth of four. [Switchboard](https://github.com/JoaquinDG/switchboard) routes the work, [Quorum](https://github.com/JoaquinDG/quorum) argues about it, [Governor](https://github.com/JoaquinDG/governor) stops it running away. This one is about the worker: what happens when the thing doing the work is allowed to change what it wants.
+
+> **Status: built, and entirely unmeasured.**
+>
+> Every detector, marker and validator in here runs, is tested, and is exercised by the scenario suite against synthetic personas. **No number in this repository is about a real persona.** The pilot began on 28 August 2026; the first real figures arrive at its week-4 gate, and the follow-up publishes them whatever they say. Until then this is a specification with an implementation attached, and it should be read as one.
+>
+> The one live path here, `HTTPAdapter`, is **written and never run**. There has been no live calibration from this repository.
+
+## Sixty seconds to see it work
+
+Zero dependencies, stdlib only, no API key. Clone it, watch a synthetic month of a persona get measured, and rebuild every number from its trace file:
 
 ```bash
 python3 -m unittest discover -s tests               # 231 tests, no PYTHONPATH needed
@@ -24,19 +53,9 @@ python3 templates/validate_journal.py  data/elias/journal.md
 python3 templates/validate_playbook.py data/elias/playbooks.md
 ```
 
-Fourth of four. [Switchboard](https://github.com/JoaquinDG/switchboard) routes the work, [Quorum](https://github.com/JoaquinDG/quorum) argues about it, [Governor](https://github.com/JoaquinDG/governor) stops it running away. This one is about the worker: what happens when the thing doing the work is allowed to change what it wants.
+## The working definition
 
-> **Status: built, and entirely unmeasured.**
->
-> Every detector, marker and validator in here runs, is tested, and is exercised by the scenario suite against synthetic personas. **No number in this repository is about a real persona.** The pilot began on 28 August 2026; the first real figures arrive at its week-4 gate, and the follow-up publishes them whatever they say. Until then this is a specification with an implementation attached, and it should be read as one.
->
-> The one live path here, `HTTPAdapter`, is **written and never run**. There has been no live calibration from this repository.
-
-## The wanton problem, in three sentences
-
-Frankfurt's distinction is that a creature which simply acts on whatever desire is strongest is a *wanton*: it can be highly intelligent and it has no will, because it never steps back and asks whether it endorses its own tendencies. A well-calibrated AI persona is exactly that, however good the calibration: it acts on whatever the prompt makes salient, and Tuesday leaves no trace on Wednesday. Trascendence gives it a second order (a weekly run where it reads its own week and decides which parts of it it wants to keep wanting), a memory that makes those decisions binding, and a fixed check it cannot touch, so that the difference between developing a will and accumulating text is something you can measure rather than something you have to feel.
-
-Working definition, and every design decision traces back to it:
+The difference between developing a will and accumulating text has to be something you can measure rather than something you have to feel.
 
 > **Functional will = stable values + self-formed preferences + a second-order loop that revises them + self-generated goals + memory that makes choices binding + room to act unsupervised + the ability to refuse.**
 
