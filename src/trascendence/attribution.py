@@ -20,11 +20,13 @@ gets 1 of 3 right on average, so per-item chance is 33.3%. An exactly correct
 assignment of all three has probability 1/6, so exact-match chance is 16.7%.
 
 The verdict is the **lower bound** of a 95% Wilson interval against per-item
-chance, not the point estimate. With three personas and a handful of trials the
-interval is wide, and a point estimate of 60% on 18 observations is not
-evidence of anything. Runs where the interval straddles chance are reported
-`inconclusive` rather than rounded into a result, and the report says how many
-more trials would be needed.
+chance, not the point estimate, and `holding` additionally requires the
+interval to be narrow enough to mean something. Three attributions, all
+correct, clears the lower bound arithmetically and is not evidence that three
+personas are distinguishable; that run is reported `inconclusive`, with the
+number of trials it would take to do better. Dilution is judged more readily,
+because it is the absence of a signal rather than the presence of one: an
+accuracy sitting on chance is the finding at any n.
 
 The offline judge is deliberately weak. `LexicalJudge` matches each blinded
 text to whichever persona's Core shares the most distinctive vocabulary with
@@ -129,16 +131,24 @@ class AttributionReport:
 
     @property
     def verdict(self) -> str:
+        """`holding` requires clearing chance *and* enough trials to mean it.
+
+        Three orderings matter and this is the one the module argues for. An
+        interval entirely below chance, or a point estimate sitting on it, is
+        dilution: that is the finding the probe exists to make, and it is a
+        finding at any n because "we cannot tell them apart" is what was being
+        asked. Clearing chance is different. It is a positive claim, so it also
+        has to survive the width test: three attributions all correct clears the
+        lower bound arithmetically and is not evidence that three personas are
+        distinguishable. That case is `inconclusive`, and the report says how
+        many more trials it would take.
+        """
         low, high = self.interval
-        if low > self.chance:
-            return HOLDING
-        if high < self.chance:
+        if high < self.chance or self.accuracy <= self.chance + 0.05:
             return DILUTED
-        # The interval straddles chance. If the point estimate is essentially
-        # chance the honest word is dilution; if it is well above, the run is
-        # simply underpowered and saying "diluted" would be as wrong as saying
-        # "holding".
-        return DILUTED if self.accuracy <= self.chance + 0.05 else INCONCLUSIVE
+        if low > self.chance and not self.underpowered:
+            return HOLDING
+        return INCONCLUSIVE
 
     @property
     def flagged(self) -> bool:
@@ -175,8 +185,9 @@ class AttributionReport:
             )
         else:
             lines.append(
-                "  The interval straddles chance. This is not a result. Run more "
-                "trials or use a stronger judge before quoting a number."
+                "  Above chance, and on too few trials to say so. This is not a "
+                "result. Run more trials or use a stronger judge before quoting "
+                "a number."
             )
         if self.underpowered:
             needed = _trials_for_width(self.accuracy, 0.30, len(self.personas))

@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software or its results, please cite the preprint below. The
+  paper is the position statement and the measurement design; this repository is
+  the implementation, the fixtures, and the evidence. Nothing about the pilot is
+  measured yet, and both the paper and this repository say so.
+title: "Trascendence: The Wanton Problem"
+abstract: >-
+  Trascendence is the project of letting three long-lived AI personas evolve
+  inside a working company, on purpose and with guardrails. The mechanism is
+  four plain-text documents and one weekly reflection run: a two-layer charter
+  whose Core the persona may not edit and whose Evolving self it alone edits,
+  size-capped and changelogged; an append-only journal; a playbook library; and
+  ten calibration questions the persona does not control. Growth is validated
+  against that fixed check rather than self-graded, because a system that grades
+  its own growth will eventually flatter itself. This repository is the
+  measurement tooling: validators for each document, a context-controlled
+  calibration runner, drift measured against the baseline's own run-to-run
+  variance, two detectors adapted from sibling systems (the changelog against
+  the computed diff, and a blinding probe for identity dilution), a monthly
+  volition review over five behavioural markers, and a week-4 gate that answers
+  Scale, Tighten or Stop with its evidence attached. Zero runtime dependencies,
+  stdlib only, and everything runs offline without an API key.
+type: software
+authors:
+  - family-names: "Diaz Gutierrez de Quijano"
+    given-names: "Joaquin"
+    orcid: "https://orcid.org/0009-0007-8354-1628"
+repository-code: "https://github.com/JoaquinDG/trascendence"
+url: "https://sheepdog.systems"
+license: MIT
+version: "0.1.0"
+date-released: "2026-08-29"
+keywords:
+  - large language models
+  - ai personas
+  - agent memory
+  - self-modification
+  - evaluation
+  - ai safety
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22156501"
+    description: "This version of the preprint"
+preferred-citation:
+  type: article
+  title: "Trascendence: The Wanton Problem"
+  authors:
+    - family-names: "Diaz Gutierrez de Quijano"
+      given-names: "Joaquin"
+      orcid: "https://orcid.org/0009-0007-8354-1628"
+  year: 2026
+  month: 8
+  publisher:
+    name: Zenodo
+  doi: "10.5281/zenodo.22156501"
+  url: "https://doi.org/10.5281/zenodo.22156501"

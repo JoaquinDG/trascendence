@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # No install step and no dependency cache: stdlib only, on purpose. If a
+      # `pip install` ever appears here, the zero-dependency claim in the README
+      # has quietly stopped being true.
+      - name: unit tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: scenario evals
+        run: PYTHONPATH=src python3 evals/detector_eval.py
+
+      - name: the offline demo, end to end
+        run: PYTHONPATH=src python3 examples/demo.py
+
+      - name: every result rebuilds from its trace
+        run: |
+          for f in traces/demo.*.jsonl; do
+            python3 replay.py "$f"
+          done
+
+      - name: the templates validate against their own validators
+        run: |
+          python3 templates/validate_charter.py templates/charter.md
+          python3 templates/validate_journal.py templates/journal.md
+          python3 templates/validate_playbook.py templates/playbook.md
