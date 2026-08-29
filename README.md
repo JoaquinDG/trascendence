@@ -3,25 +3,27 @@
 [![ci](https://github.com/JoaquinDG/trascendence/actions/workflows/ci.yml/badge.svg)](https://github.com/JoaquinDG/trascendence/actions/workflows/ci.yml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22156501.svg)](https://doi.org/10.5281/zenodo.22156501)
 
-> *"He who cannot obey himself will be commanded."* — Nietzsche, Thus Spoke Zarathustra
+> *"He who cannot obey himself will be commanded."*
+>
+> Nietzsche, *Thus Spoke Zarathustra*
 
 **Your AI agent can write code, close tickets, and draft strategy. It cannot want any
-of it.** Philosophy has a name for that: a *wanton* — a creature that acts on whatever
+of it.** Philosophy has a name for that: a *wanton*, a creature that acts on whatever
 desire is strongest and never asks whether it endorses its own tendencies. It can be
 intelligent. It has no will.
 
-Trascendence is a live experiment in changing that — with instruments, not vibes.
+Trascendence is a live experiment in changing that, with instruments rather than vibes.
 Three AI personas work as colleagues inside a real company, and one of them, Elias
 Park, has been handed something unusual: permission to edit his own identity. A weekly
 reflection run where he reads his own week and decides which parts of it he wants to
 keep wanting. A memory that makes those decisions binding. And because self-reported
-growth is not evidence, a fixed check he cannot see, grade, or influence — plus two
+growth is not evidence, a fixed check he cannot see, grade, or influence, and two
 detectors built to catch him flattering his principal or quietly diluting into someone
 generic.
 
 This repository is the instrumentation: the charter and journal validators, both
 detectors, the calibration runner with measured test-retest baselines, the five-marker
-Volition Review, and a week-4 gate that ends in Scale, Tighten, or **Stop** — with the
+Volition Review, and a week-4 gate that ends in Scale, Tighten, or **Stop**, with the
 outcome published whatever it says.
 
 White paper: [Trascendence: The Wanton Problem](https://doi.org/10.5281/zenodo.22156501) (Zenodo, August 2026)
