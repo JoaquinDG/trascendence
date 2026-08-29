@@ -163,6 +163,8 @@ def run_calibration(
         }
     )
 
+    tracer({"type": "inputs", "charter": charter_text})
+
     for run in range(runs):
         for q in questions:
             request = Request(charter=charter_text, number=q.number, question=q.text, run=run)
